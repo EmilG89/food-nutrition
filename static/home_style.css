@@ -1,0 +1,102 @@
+body {
+    background-color: beige;
+}
+
+header {
+    background-color: antiquewhite;
+}
+
+#navBar {
+    padding: 10px 0px;
+} 
+
+#itemDetails {
+    display:inline-block;
+    position: absolute;
+    z-index: 2;
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    box-sizing: content-box;
+    border: 10px solid blue;
+    padding: 5px 10px;
+    background-color: antiquewhite;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    background-color: aquamarine;
+    color: black;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline-block;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    background-color: aquamarine;
+    color: black;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+a:hover, a:active {
+    background-color: blue;
+    color: aliceblue;
+}
+
+.elementColumn {
+    float: left;
+    width: 20%;
+}
+
+#welcome_segment {
+    margin-top: 20px;
+    background-color: antiquewhite;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.welcome_article {
+    width: 50%;
+    height: 300px;
+    float: left;
+    padding: 20px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.welcome_article img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#element_segment {
+    width: 100%;
+    display: inline-block;
+}
+#element_segment table {
+    float: left;
+    margin-right: 20px;
+}
+#food_segment {
+    width: 100%;
+    display: inline-block;
+}
+#food_segment table {
+    float: left;
+    margin-right: 20px;
+}
+
+a.table_link {
+    padding: 2px 2px;
+}
+
+.food_table {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}

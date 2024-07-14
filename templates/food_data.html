@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+FoodApp - Food Database
+{% endblock %}
+
+{% block content %}
+    <p>Food Database</p>
+    <div style="width: 100%; height: 70vh; overflow: auto;">
+        <table class="food_table">
+            <tr>
+                {% for header in elements %}
+                    <th>{{ header.name }}</th>
+                {% endfor %}
+            </tr>
+            {% for food in all_food %}
+                <tr>
+                    {% for element in food.elements %}
+                        <td>{{ element.value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

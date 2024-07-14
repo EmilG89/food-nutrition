@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}
+FoodApp - Home
+{% endblock %}
+<body>
+{% block content %}
+    <div id="home_body">
+
+
+
+        <div id="welcome_segment">
+            <div class="welcome_article">
+                <p>This project is built for people who want to live long and healthy lives.</p>
+                <p>Our GOAL is to provide information on food nutrition facts and human body requirements.</p>
+                <p>Register to gain access for individual diet building programm. It is absoluteley FREE</p>
+                <a href="{{ url_for('login_page') }}">Register</a>
+            </div>
+            <div class="welcome_article">
+                <img src="{{ url_for('static', filename='images/welcome_image_1.png') }}">
+            </div>
+        </div>
+
+
+
+        <div id="element_segment">
+            <h3>Choose Element to find in what foods and in what amount it can be found</h3>
+            <form action="" method="POST">
+                {{ element_form.hidden_tag() }}
+                <p>
+                    {{ element_form.element.label }}
+                    {{ element_form.element }}
+                    {{ element_form.submit }}
+                </p>
+            </form>
+            <div>
+                {% for table in tables %}
+                    <table>
+                        <tr>
+                            <th>Nr.</th>
+                            <th>Food</th>
+                            <th>{{ table[0][1].name }}</th>
+                        </tr>
+                            {% for item in table %}
+                                <tr>
+                                    <td>
+                                        {{ item[0] }}
+                                    </td>
+                                    <td>
+                                        <a class="table_link" href="{{ url_for('index', name = item[1].food_name) }}">{{ item[1].food_name }}</a>
+                                    </td>
+                                    <td>
+                                        {{ item[1].value }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                    </table>
+                {% endfor %}
+            </div>
+
+
+
+            {% if elements %}
+            <script>
+                function scrollTo() {
+                    document.getElementById("element_segment").scrollIntoView();
+                }
+                scrollTo();
+            </script>
+                <div id="itemDetails">
+                    <p style="cursor: pointer; float: right;" onclick="itemDetailsDropdown()">X</p>
+                    <h3 id="itemName">{{ elements[elements|length-1] }}</h3>
+                    <div style="width: 60%; float: left;">
+                        <h4>Details:</h4>
+                        {% set counter = [] %}
+                        {% for table in range(elements | length // 15) %}
+                        <ul style="float: left; list-style-type: none; margin-top: 0; padding-left: 15px;">
+                            {% for element in elements[counter|length:counter|length + 15] %}
+                                {% if ((element.value | string != "") and (element.value | string > "0") and (element.name != "name")) %}
+                                    <li>{{ counter | length + 1}}. {{ element.name }} - {{ element.value }}</li>
+                                    {% set __ = counter.append(1)%}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% endfor %}
+                    </div>
+                    <div style="width: 40%; float:right; height: 300px; box-sizing: border-box;">
+                        <img src="{{ url_for('static', filename='images/welcome_image_2.png') }}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+
+        <div id="food_segment">
+            <h3>Choose Food to find what elements and in what amount are available in it</h3>
+            <form action="" method="POST">
+                {{ food_form.hidden_tag() }}
+                <p>
+                    {{ food_form.item.label }}
+                    {{ food_form.item }}
+                    {{ food_form.submit }}
+                </p>
+            </form>
+            <div>
+                {% for table1 in tables1 %}
+                    <table>
+                        <tr>
+                            <th>Nr.</th>
+                            <th>Element</th>
+                            <th>Value</th>
+                        </tr>
+                            {% for item in table1 %}
+                                <tr>
+                                    <td>
+                                        {{ item[0] }}
+                                    </td>
+                                    <td>
+                                        {{ item[1].name }}
+                                    </td>
+                                    <td>
+                                        {{ item[1].value }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                    </table>
+                {% endfor %}
+            </div>
+        </div>
+
+        <h3>Top 10 Foods for losing weight</h3>
+    </div>
+{% endblock %}
+</body>

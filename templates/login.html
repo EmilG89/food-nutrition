@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>Login information</p>
+    <div>
+        <h3>Login</h3>
+        <form action="" method="post">
+            {{ log_form.hidden_tag() }}
+            <p>
+                {{ log_form.email.label }}
+                 {{ log_form.email(size=50) }}
+            </p>
+            <p>
+                {{ log_form.password.label }}
+                {{ log_form.password(size=32) }}
+            </p>
+            <span style="color: red">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </span>
+            <p>
+                {{ log_form.remember.label }} {{ log_form.remember() }}
+            </p>
+            <p>
+                {{ log_form.submit() }}
+            </p>
+        </form>
+        <form action="" method="post">
+            {{ reg_form.hidden_tag() }}
+            <p>
+                {{ reg_form.username.label}}
+                {{ reg_form.username(size=32, placeholder="username") }}
+            </p>
+            <p>
+                {{ reg_form.email.label}}
+                {{ reg_form.email(size=50, placeholder="email") }}
+            </p>
+            <p>
+                {{ reg_form.password.label}}
+                {{ reg_form.password(size=32, placeholder="password") }}
+            </p>
+            <p>
+                {{ reg_form.password_r.label}}
+                {{ reg_form.password_r(size=32, placeholder="repeat password") }}
+            </p>
+            <p>{{ reg_form.submit() }}</p>
+        </form>
+    </div>
+{% endblock %}
+        

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport", content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/static/home_style.css">
+        <script src="{{ url_for('static', filename='functions.js') }}" defer></script>
+    </head>
+    <body>
+        <header>
+            <h2 style="text-align: center">FoodApp</h2>
+            <div id="navBar">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('food_data_page') }}">Food Database</a>
+                <a href="{{ url_for('human_physiology_page') }}">Human Physiology</a>
+                <a href="{{ url_for('relevant_articles_page') }}">Relevant Articles</a>
+                <a href="{{ url_for('build_a_diet_page') }}">Build A Diet</a>
+                {% if current_user.is_anonymous %}
+                    <a style="float:right" href="{{ url_for('login_page') }}">Log In</a>
+                {% else %}
+                    <a style="float:right" href="{{ url_for('logout') }}">Log Out</a>
+                {% endif %}
+            </div>
+        </header>
+        {% block content %}
+        {% endblock %}
+        <footer>
+            <div style="background-color: antiquewhite;">
+                <p style="color: brown;">Footer of the webpage</p>
+            </div>
+        </footer>
+    </body>
+</html>
